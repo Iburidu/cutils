@@ -33,7 +33,7 @@ double x = 5; VECTOR_PUSH(v, x); // auto conversion
 
 ###### Getting an item
 ```c
-void* item = vector_get(&v, 0);
+int* item = (int*)vector_get(&v, 0);
 ```
 ```c
 int item = VECTOR_GET(v, 0);
@@ -99,13 +99,14 @@ VECTOR_CLEAR(v);
 ###### Inserting item
 ```c
 int x = 5;
-vector_insert(&v, &x, 2);
+int* item = (int*)vector_insert(&v, &x, 2);
 ```
 ```c
 VECTOR_INSERT(int, v, 5, 2);
 ```
 > Inserts item to the given index and shifts all items with 1 from there
 > The macro version creates local variable -> check push for more info
+> The non-macro version returns a pointer to the newly created item
 
 ###### Erasing items
 ```c
@@ -115,6 +116,7 @@ vector_erase(&v, 2);
 VECTOR_ERASE(v, 2);
 ```
 > Removes an element and shifts all items after that with 1 to left
+> The non-macro version returns a pointer to the next item (NULL if the vector is empty)
 
 ###### Resizing the vector
 ```c
