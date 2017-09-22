@@ -61,6 +61,14 @@ int main()
     VECTOR_DESTROY(v);
     
     printf("capacity: %u, size: %u, empty: %u\n", VECTOR_CAPACITY(v), VECTOR_SIZE(v), VECTOR_EMPTY(v));
+	
+	VECTOR_CREATE(int, v);
+	
+	printf("capacity: %u, size: %u, empty: %u\n", VECTOR_CAPACITY(v), VECTOR_SIZE(v), VECTOR_EMPTY(v));
+    
+    VECTOR_DESTROY(v);
+    
+    printf("capacity: %u, size: %u, empty: %u\n", VECTOR_CAPACITY(v), VECTOR_SIZE(v), VECTOR_EMPTY(v));
     
     return 0;
 }
