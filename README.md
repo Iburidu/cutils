@@ -145,4 +145,4 @@ VECTOR_DESTROY(v);
 
 ### Compiling
 
-*Compile: gcc utils.c vector.c main.c -Wall -Wextra -o cutils[.exe]*
+*Compile: gcc utils.c vector.c string.c main.c -Wall -Wextra -o cutils[.exe]*
