@@ -110,7 +110,7 @@ VECTOR_INSERT(int, v, 5, 2);
 
 ###### Erasing items
 ```c
-vector_erase(&v, 2);
+int* item = (int*)vector_erase(&v, 2);
 ```
 ```c
 VECTOR_ERASE(v, 2);
