@@ -114,7 +114,7 @@ void* vector_erase(vector* v, size_t index)
     
     D(("%s: Item removed - index: %u", __func__, index));
     
-    return erase_item;
+    return v->size ? erase_item : NULL;
 }
 void vector_resize(vector* v, size_t count, const void* item)
 {
