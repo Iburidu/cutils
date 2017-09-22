@@ -1,36 +1,66 @@
 #include <stdio.h> //printf
 #include "utils.h"
 
-int main(const char* argv[], int argc)
+void print_vector(vector* v)
 {
-	int i = 0; // idiot <c99
-	
+    printf("--------------- VECTOR ITEMS ---------------\n");
+    size_t i=0;
+    for(i=0; i<VECTOR_SIZE(*v); ++i)
+    {
+        printf("v[%u] = %u\n", i, VECTOR_GET(int, *v, i));
+    }
+    printf("--------------------------------------------\n");
+}
+
+int main()
+{
 	vector v;
-	
-	//vector_init(&v, sizeof(int));
-	VECTOR_INIT(v, int);
-	
-	printf("init: data_size: %u, capacity: %u, size: %u\n", v.data_size, v.capacity, v.count);
-	
-	int max = 17;
-	
-	for(i=0; i<max; ++i)
-	{
-		//vector_push(&v, &i);
-		VECTOR_PUSH(v, i, int);
-		
-		printf("after push: capacity: %u, size: %u\n", v.capacity, v.count);
-	}
-	
-	VECTOR_PUSH(v, 128, int);
-	printf("after push: capacity: %u, size: %u\n", v.capacity, v.count);
-	
-	for(i=0; i<max+1; ++i)
-	{
-		//printf("v[%i] = %i\n", i, *(int*)vector_get(&v, i));
-		printf("v[%i] = %i\n", i, VECTOR_GET(v, i, int));
-	}
-	
-	//vector_free(&v);
-	VECTOR_FREE(v);
+    size_t i=0; // idiot <c99
+    
+    VECTOR_CREATE(int, v);
+    VECTOR_RESIZE(int, v, 10, 0);
+    
+    print_vector(&v);
+    
+    for(i=0; i<5; ++i)
+    {
+        VECTOR_PUSH(int, v, i);
+    }
+    
+    print_vector(&v);
+    
+    printf("capacity: %u, size: %u, empty: %u\n", VECTOR_CAPACITY(v), VECTOR_SIZE(v), VECTOR_EMPTY(v));
+    
+    VECTOR_SHRINK(v);
+    
+    printf("after shrink: capacity: %u, size: %u, empty: %u\n", VECTOR_CAPACITY(v), VECTOR_SIZE(v), VECTOR_EMPTY(v));
+    
+    for(i=0; i<10; ++i)
+    {
+        VECTOR_INSERT(int, v, (i+1)*11, i*2);
+    }
+    
+    print_vector(&v);
+    
+    for(i=0; i<10; ++i)
+    {
+        VECTOR_ERASE(v, i+1);
+    }
+    
+    print_vector(&v);
+    
+    VECTOR_RESIZE(int, v, 0, 0);
+    VECTOR_SHRINK(v);
+    
+    printf("capacity: %u, size: %u, empty: %u\n", VECTOR_CAPACITY(v), VECTOR_SIZE(v), VECTOR_EMPTY(v));
+    
+    VECTOR_PUSH(int, v, 100);
+    
+    printf("capacity: %u, size: %u, empty: %u\n", VECTOR_CAPACITY(v), VECTOR_SIZE(v), VECTOR_EMPTY(v));
+    
+    VECTOR_DESTROY(v);
+    
+    printf("capacity: %u, size: %u, empty: %u\n", VECTOR_CAPACITY(v), VECTOR_SIZE(v), VECTOR_EMPTY(v));
+    
+    return 0;
 }
