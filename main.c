@@ -1,5 +1,5 @@
 #include <stdio.h> //printf
-#include "utils.h"
+#include "vector.h"
 
 void print_vector(vector* v)
 {
