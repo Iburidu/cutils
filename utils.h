@@ -4,9 +4,18 @@
 #include <stddef.h> // size_t
 #include <stdio.h> // printf
 
+#ifndef bool
 #define bool int
+#endif // bool
+
+#ifndef false
 #define false 0
+#endif // false
+
+#ifndef true
 #define true 1
+#endif // true
+
 #ifndef NULL
 #define NULL ((void*)0)
 #endif //NULL
@@ -21,7 +30,7 @@
     printf("\n")
 #else
 #define D(log)
-#endif
+#endif // DEBUG
 
 // Initialize the struct - This works as a constructor in C++
 #define VECTOR_CREATE(type, vec) \
