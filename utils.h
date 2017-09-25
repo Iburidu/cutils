@@ -30,7 +30,14 @@
 #define MIN_CAPACITY 2
 #define ALLOC_MULTIPLIER 2
 
-void D(const char* format, ...);
-
+#ifdef DEBUG
+#define D(...) \
+    do { \
+        printf(__VA_ARGS__); \
+        printf("\n"); \
+    } while(false)
+#else
+#define D(...)
+#endif // DEBUG
 
 #endif // __UTILS_H__
